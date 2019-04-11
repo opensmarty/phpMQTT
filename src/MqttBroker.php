@@ -243,7 +243,9 @@ class MqttBroker
         $i      = 0;
         $buffer = "";
 
-        $buffer .= $this->strwritestring($topic, $i);
+        // $buffer .= $this->strwritestring($topic, $i);
+        // when it connection emitter, publish $topic .= '/', it means that topic behind '/'
+        $buffer .= $this->strwritestring($topic . '/', $i);
 
         //$buffer .= $this->strwritestring($content,$i);
 
