@@ -1,6 +1,6 @@
 <?php
 
-require("../phpMQTT.php");
+require("../src/MqttBroker.php");
 
 
 $server = "mqtt.example.com";     // change if necessary
@@ -9,13 +9,13 @@ $username = "";                   // set your username
 $password = "";                   // set your password
 $client_id = "phpMQTT-subscriber"; // make sure this is unique for connecting to sever - you could use uniqid()
 
-$mqtt = new phpMQTT($server, $port, $client_id);
+$mqtt = new MqttBroker($server, $port, $client_id);
 
 if(!$mqtt->connect(true, NULL, $username, $password)) {
 	exit(1);
 }
 
-$topics['bluerhinos/phpMQTT/examples/publishtest'] = array("qos" => 0, "function" => "procmsg");
+$topics['opensmarty/phpMQTT/examples/publishtest'] = array("qos" => 0, "function" => "procmsg");
 $mqtt->subscribe($topics, 0);
 
 while($mqtt->proc()){
